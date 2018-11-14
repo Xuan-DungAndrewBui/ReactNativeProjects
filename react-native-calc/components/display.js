@@ -1,32 +1,47 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native'
 
-const style = StyleSheet.create({
-    display: {
-        color: 'white',
-        fontSize: 70,
-        // fontFamily: 'inherit',
-        textAlign: 'right',
-        paddingTop: 25,
-        paddingRight: 16,
-        paddingBottom: 20,
-        overflow: 'scroll',
-      }
-    }
-);
-
 export default class Display extends React.Component {
 
     constructor(props) {
         super(props);
     }
 
+    fontType(displayType) {
+        switch (displayType) {
+            case "Display":
+                return style.displayText;
+            case "Memory":
+                return style.memoryText; 
+        }
+    }
+
     render() {
         return (
-            <View>
-                <Text style={style.display}>0</Text>
-            </View>
+            // <View style={style.display}>
+                <Text style={this.fontType(this.props.displayType)}>{this.props.value}</Text>
+            // </View>
         )
     }
 }
 
+const style = StyleSheet.create({
+    display: {
+        paddingRight: 16,
+      },
+      
+      displayText: {
+        color: 'white',
+        fontSize: 45,
+        textAlign: 'right',
+        textAlignVertical: 'center',
+      },
+      memoryText: {
+        color: 'gray',
+        fontSize: 20,
+        textAlign: 'right',
+        textAlignVertical: 'center',
+      },
+
+    }
+);
